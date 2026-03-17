@@ -62,7 +62,6 @@ function App() {
   <span><FaJs /> JavaScript</span>
   <span><FaHtml5 /> HTML</span>
   <span><FaCss3Alt /> CSS</span>
-  <span><FaGitAlt /> Git</span>
 </div>
       </div>
 
