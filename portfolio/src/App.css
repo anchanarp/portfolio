@@ -12,7 +12,12 @@ body {
   background: radial-gradient(circle at center, #140f2d, #020617);
   color: #e0e0ff;
 }
-
+body {
+  background: 
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url('./bg.jpg') no-repeat center center/cover;
+  background-attachment: fixed;
+}
 /* NAVBAR */
 .navbar {
   position: fixed;
