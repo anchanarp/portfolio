@@ -1,0 +1,150 @@
+🧠 🧾 1. Login + Signup Backend Prompt
+
+👉 Claude-il paste cheyyu:
+
+Create a Flask login and signup system using SQLite.
+
+Requirements:
+- User registration with username and password
+- Password hashing using werkzeug.security
+- Login authentication
+- Session management
+- Logout functionality
+- Clean and simple code structure
+
+Also include:
+- Database schema
+- app.py full code
+🎨 🧾 2. Animated Login UI Prompt
+Create a modern animated login page using HTML, Tailwind CSS, and AOS animation.
+
+Requirements:
+- Glassmorphism style
+- Smooth fade-in animation
+- Responsive design
+- Username & password input
+- Login button with hover effects
+
+Return only clean HTML code.
+📝 🧾 3. To-Do Dashboard UI Prompt
+Create a modern To-Do dashboard UI using HTML, Tailwind CSS, and AOS.
+
+Features:
+- Add task input
+- Task list display
+- Delete button
+- Smooth animations
+- Clean card-based design
+
+Make it responsive and visually attractive.
+🔗 🧾 4. Connect Frontend + Backend Prompt
+I have a Flask backend with login and a To-Do system.
+
+Help me connect HTML forms with Flask routes:
+- Login form → /login
+- Register form → /register
+- Add task → /add
+- Delete task → /delete/<id>
+
+Explain clearly where to place action, method, and how data is sent.
+🛠️ 🧾 5. Fix Errors Prompt
+Here is my Flask project code. Fix all errors and explain clearly.
+
+[PASTE YOUR CODE HERE]
+🚀 🧾 6. Deployment Prompt (important 🔥)
+Explain step-by-step how to deploy a Flask project using Render.
+
+Include:
+- requirements.txt
+- how to push to GitHub
+- how to connect Render
+🎯 PRO TIP (very important)
+
+👉 Claude-il prompt kodukkumbo:
+
+“clean code”
+“modern UI”
+“responsive design”
+
+ennu always add cheyyu 💯
+
+
+
+
+
+
+
+
+
+
+1. TASK MANAGER APP (BEST OPTION 👍)
+
+👉 Nee already create cheythath ith thanne aanu
+👉 Athine advanced level-il upgrade cheyyu
+
+💡 Add cheyyan:
+✅ Task priority (Low / Medium / High)
+📅 Due date
+🔔 Reminder system
+📊 Progress chart
+🕓 History (already idea und)
+🏷️ Categories (Work / Study / Personal)
+
+👉 Final result:
+🔥 “Premium Productivity App”
+
+💼 2. STUDENT PLANNER APP
+
+👉 Same system → students use cheyyan customize cheyyu
+
+Features:
+📚 Subjects
+📝 Assignments
+📅 Exam reminders
+⏱ Study timer
+
+👉 College project-inu perfect 🔥
+
+🧠 3. HABIT TRACKER APP
+
+👉 Daily habits track cheyyan
+
+Features:
+🌅 Daily habits (Workout, Study…)
+📈 Streak counter
+🔥 Motivation stats
+
+👉 Trending app idea 🔥
+
+💻 4. MINI SAAS PRODUCT (PRO LEVEL)
+
+👉 Internet-il host cheyth use cheyyan
+
+Features:
+👤 Multi-user login
+☁️ Cloud storage
+📊 Dashboard analytics
+
+👉 Resume-il powerful 🔥
+
+🚀 NINTE BEST CHOICE
+
+👉 Already build cheythath kond:
+
+👉 Task Manager → Upgrade cheyyu
+
+💎 FINAL PROJECT NAME IDEAS
+⚡ Flow (already nice)
+🔥 TaskFlow Pro
+🚀 FocusTrack
+📌 DoneIt
+🧠 MindTask
+🧭 NEXT STEPS (IMPORTANT)
+
+👉 Ippo ith cheyyu:
+
+✅ Add task history
+✅ Add priority color UI
+✅ Add due date
+✅ Improve dashboard animation
+✅ Deploy (Render / Railway)

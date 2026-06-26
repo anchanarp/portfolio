@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Task Manager app preview">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#050816"/>
+      <stop offset=".55" stop-color="#0b1024"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset=".55" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="930" cy="96" r="220" fill="#7c3aed" opacity=".18"/>
+  <circle cx="210" cy="612" r="190" fill="#2563eb" opacity=".15"/>
+  <rect x="82" y="74" width="1036" height="572" rx="34" fill="#080d1d" stroke="#334155" stroke-opacity=".8"/>
+  <rect x="82" y="74" width="1036" height="72" rx="34" fill="#0d1428"/>
+  <circle cx="130" cy="111" r="9" fill="#a855f7"/>
+  <circle cx="162" cy="111" r="9" fill="#2563eb"/>
+  <circle cx="194" cy="111" r="9" fill="#38bdf8"/>
+  <text x="600" y="120" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" text-anchor="middle">Task Manager</text>
+  <rect x="136" y="184" width="250" height="388" rx="24" fill="#0d152b" stroke="#26385f"/>
+  <text x="170" y="236" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="800">Overview</text>
+  <rect x="170" y="272" width="142" height="12" rx="6" fill="#94a3b8" opacity=".6"/>
+  <rect x="170" y="324" width="176" height="52" rx="16" fill="#121d38" stroke="#24365e"/>
+  <rect x="170" y="398" width="176" height="52" rx="16" fill="#121d38" stroke="#24365e"/>
+  <rect x="170" y="472" width="176" height="52" rx="16" fill="#121d38" stroke="#24365e"/>
+  <rect x="442" y="184" width="622" height="388" rx="24" fill="#0b1124" stroke="#26385f"/>
+  <text x="486" y="242" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Today&apos;s Tasks</text>
+  <rect x="872" y="210" width="144" height="44" rx="22" fill="url(#accent)" filter="url(#glow)"/>
+  <text x="944" y="239" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" text-anchor="middle">Add Task</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="486" y="292" width="532" height="58" rx="18" fill="#111a31" stroke="#2b3f67"/>
+    <circle cx="522" cy="321" r="11" fill="#22c55e"/>
+    <text x="552" y="327" fill="#e2e8f0" font-size="18" font-weight="700">Design portfolio project section</text>
+    <rect x="888" y="306" width="92" height="28" rx="14" fill="#2563eb"/>
+    <text x="934" y="326" fill="#fff" font-size="12" font-weight="800" text-anchor="middle">Design</text>
+    <rect x="486" y="374" width="532" height="58" rx="18" fill="#111a31" stroke="#2b3f67"/>
+    <circle cx="522" cy="403" r="11" fill="#a855f7"/>
+    <text x="552" y="409" fill="#e2e8f0" font-size="18" font-weight="700">Build task filters and status chips</text>
+    <rect x="888" y="388" width="92" height="28" rx="14" fill="#7c3aed"/>
+    <text x="934" y="408" fill="#fff" font-size="12" font-weight="800" text-anchor="middle">React</text>
+    <rect x="486" y="456" width="532" height="58" rx="18" fill="#111a31" stroke="#2b3f67"/>
+    <circle cx="522" cy="485" r="11" fill="#38bdf8"/>
+    <text x="552" y="491" fill="#e2e8f0" font-size="18" font-weight="700">Deploy full-stack task manager</text>
+    <rect x="888" y="470" width="92" height="28" rx="14" fill="#0891b2"/>
+    <text x="934" y="490" fill="#fff" font-size="12" font-weight="800" text-anchor="middle">Deploy</text>
+  </g>
+</svg>

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anchana R P — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════
+   CSS VARIABLES & RESET
+═══════════════════════════════════════════════ */
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a26;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+  --text: #f0eef8;
+  --text-muted: #9994b8;
+  --accent: #b48ef0;
+  --accent2: #f0a8d0;
+  --accent3: #8ef0d4;
+  --accent-glow: rgba(180,142,240,0.25);
+  --card-bg: rgba(26,26,38,0.85);
+  --nav-bg: rgba(10,10,15,0.82);
+  --shadow: 0 8px 32px rgba(0,0,0,0.45);
+  --radius: 18px;
+  --transition: 0.38s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --bg: #f5f3ff;
+  --bg2: #ede9fa;
+  --bg3: #e2dcf7;
+  --glass: rgba(255,255,255,0.55);
+  --glass-border: rgba(180,142,240,0.22);
+  --text: #1a1030;
+  --text-muted: #6b5f8a;
+  --accent: #7c3aed;
+  --accent2: #c026d3;
+  --accent3: #0d9488;
+  --accent-glow: rgba(124,58,237,0.15);
+  --card-bg: rgba(255,255,255,0.72);
+  --nav-bg: rgba(245,243,255,0.88);
+  --shadow: 0 8px 32px rgba(124,58,237,0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+  cursor: none;
+}
+
+/* ═══════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════ */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, background 0.3s;
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), width 0.25s, height 0.25s, border-color 0.3s;
+  opacity: 0.7;
+}
+.cursor-ring.hovered { width: 52px; height: 52px; border-color: var(--accent2); opacity: 1; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 64px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  border-bottom: 1px solid var(--glass-border);
+  transition: background var(--transition);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.22s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.theme-toggle {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  cursor: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: background 0.25s, transform 0.2s, border-color 0.25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.theme-toggle:hover { background: var(--accent-glow); border-color: var(--accent); transform: scale(1.06); }
+
+/* ═══════════════════════════════════════════════
+   BACKGROUND MESHES
+═══════════════════════════════════════════════ */
+.bg-mesh {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden;
+}
+.mesh-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); opacity: 0.18;
+  animation: floatBlob 12s ease-in-out infinite;
+}
+.mesh-blob:nth-child(1) {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, #b48ef0, transparent 70%);
+  top: -120px; left: -100px;
+  animation-duration: 14s;
+}
+.mesh-blob:nth-child(2) {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #f0a8d0, transparent 70%);
+  bottom: -100px; right: -80px;
+  animation-duration: 10s; animation-delay: -4s;
+}
+.mesh-blob:nth-child(3) {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #8ef0d4, transparent 70%);
+  top: 40%; left: 60%;
+  animation-duration: 16s; animation-delay: -7s;
+}
+@keyframes floatBlob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.06); }
+  66% { transform: translate(-18px,25px) scale(0.95); }
+}
+
+/* ═══════════════════════════════════════════════
+   SECTIONS LAYOUT
+═══════════════════════════════════════════════ */
+section {
+  position: relative; z-index: 1;
+  padding: 100px 5vw 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s 0.1s, transform 0.65s 0.1s;
+}
+.section-title span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.animate-in .section-label,
+.animate-in .section-title {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding-top: 64px;
+  gap: 0;
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--accent3);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  animation: fadeSlideUp 0.8s 0.1s both;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+  animation: fadeSlideUp 0.85s 0.22s both;
+}
+.hero-name .gradient-name {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradShift 5s ease infinite, fadeSlideUp 0.85s 0.22s both;
+}
+@keyframes gradShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.hero-tagline {
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 1.1rem;
+  animation: fadeSlideUp 0.9s 0.34s both;
+}
+.hero-tagline strong { color: var(--text); font-weight: 500; }
+.hero-subtext {
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  animation: fadeSlideUp 0.95s 0.44s both;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeSlideUp 1s 0.55s both;
+}
+.btn-primary {
+  padding: 13px 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border: none; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: none;
+  text-decoration: none;
+  transition: transform 0.22s, box-shadow 0.22s;
+  box-shadow: 0 4px 24px var(--accent-glow);
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 36px var(--accent-glow); }
+.btn-ghost {
+  padding: 12px 30px;
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  font-size: 0.9rem; font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  cursor: none;
+  text-decoration: none;
+  transition: border-color 0.22s, background 0.22s, transform 0.22s;
+}
+.btn-ghost:hover { border-color: var(--accent); background: var(--accent-glow); transform: translateY(-2px); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1.5px;
+  animation: bounce 2s ease-in-out infinite;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(9px); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════
+   CAT FACE EYE TRACKER
+═══════════════════════════════════════════════ */
+.cat-face {
+  position: fixed;
+  top: 82px; right: 28px;
+  z-index: 800;
+  width: 68px; height: 68px;
+  user-select: none;
+  animation: catBobble 3.5s ease-in-out infinite;
+}
+@keyframes catBobble {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.cat-face svg { width: 100%; height: 100%; }
+
+/* ═══════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  opacity: 0; transform: translateY(24px);
+}
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 0 1px var(--accent);
+  border-color: var(--accent);
+}
+.glass-card.visible { opacity: 1; transform: translateY(0); }
+
+.about-text p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-dob {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 1rem;
+  padding: 7px 16px;
+  background: var(--accent-glow);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.stat-item {
+  text-align: center;
+  padding: 1.2rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  transition: background 0.25s, border-color 0.25s;
+}
+.stat-item:hover { background: var(--accent-glow); border-color: var(--accent); }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ═══════════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.4rem;
+}
+.skill-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  opacity: 0; transform: translateY(20px);
+}
+.skill-card.visible { opacity: 1; transform: translateY(0); }
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.skill-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.9rem;
+}
+.skill-name { font-weight: 500; font-size: 0.95rem; }
+.skill-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem; color: var(--accent);
+}
+.skill-bar {
+  height: 5px;
+  background: var(--glass);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+.skill-fill::after {
+  content: '';
+  position: absolute; right: 0; top: -1.5px;
+  width: 8px; height: 8px;
+  background: var(--accent2);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent2);
+}
+.skill-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+
+/* ═══════════════════════════════════════════════
+   PROJECTS — PINTEREST GRID
+═══════════════════════════════════════════════ */
+.projects-masonry {
+  columns: 3;
+  column-gap: 1.4rem;
+}
+@media (max-width: 900px) { .projects-masonry { columns: 2; } }
+@media (max-width: 560px) { .projects-masonry { columns: 1; } }
+
+.project-card {
+  break-inside: avoid;
+  margin-bottom: 1.4rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  opacity: 0; transform: translateY(22px);
+  position: relative;
+}
+.project-card.visible { opacity: 1; transform: translateY(0); }
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1.5px var(--accent);
+  border-color: var(--accent);
+}
+.project-thumb {
+  width: 100%; height: 0;
+  background: linear-gradient(135deg, var(--bg3), var(--bg2));
+  position: relative;
+  overflow: hidden;
+}
+.project-card:nth-child(1) .project-thumb { padding-bottom: 62%; }
+.project-card:nth-child(2) .project-thumb { padding-bottom: 75%; }
+.project-card:nth-child(3) .project-thumb { padding-bottom: 55%; }
+
+.project-thumb-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+  transition: transform 0.45s;
+}
+.project-card:hover .project-thumb-inner { transform: scale(1.1); }
+
+.project-thumb-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: inherit;
+  opacity: 0.7;
+}
+.project-thumb-inner span { position: relative; z-index: 1; }
+
+/* Decorative gradient overlay */
+.project-thumb-inner::after {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.5;
+}
+.project-card:nth-child(1) .project-thumb-inner::after {
+  background: linear-gradient(135deg, #b48ef022, #f0a8d022);
+}
+.project-card:nth-child(2) .project-thumb-inner::after {
+  background: linear-gradient(135deg, #8ef0d422, #b48ef022);
+}
+.project-card:nth-child(3) .project-thumb-inner::after {
+  background: linear-gradient(135deg, #f0a8d022, #8ef0d422);
+}
+
+.project-body { padding: 1.4rem; }
+.project-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; color: var(--accent3);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 0.6rem; line-height: 1.3;
+}
+.project-desc {
+  font-size: 0.85rem; color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  padding: 3px 11px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.project-card:hover .tag { background: var(--accent-glow); color: var(--accent); border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
+}
+.contact-card {
+  display: flex; align-items: center; gap: 1.2rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  text-decoration: none; color: var(--text);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  opacity: 0; transform: translateY(20px);
+}
+.contact-card.visible { opacity: 1; transform: translateY(0); }
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 44px rgba(0,0,0,0.3);
+  border-color: var(--accent);
+}
+.contact-icon {
+  width: 52px; height: 52px; flex-shrink: 0;
+  background: var(--accent-glow);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  transition: background 0.25s;
+}
+.contact-card:hover .contact-icon { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.contact-info-label {
+  font-size: 0.75rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 3px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.contact-info-value {
+  font-size: 0.88rem; font-weight: 500;
+  word-break: break-all;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 3rem 5vw 160px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--glass-border);
+}
+footer span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ═══════════════════════════════════════════════
+   WALKING CAT ANIMATION
+═══════════════════════════════════════════════ */
+.cat-stage {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 100px;
+  z-index: 800;
+  pointer-events: none;
+  overflow: hidden;
+}
+.walking-cat {
+  position: absolute;
+  bottom: 18px;
+  left: -120px;
+  animation: catWalk 18s linear infinite;
+  filter: drop-shadow(0 4px 12px rgba(180,142,240,0.4));
+}
+@keyframes catWalk {
+  0%   { left: -120px; transform: scaleX(1); }
+  49%  { left: calc(100% + 120px); transform: scaleX(1); }
+  50%  { left: calc(100% + 120px); transform: scaleX(-1); }
+  99%  { left: -120px; transform: scaleX(-1); }
+  100% { left: -120px; transform: scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .cat-face { top: 74px; right: 16px; width: 52px; height: 52px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Background blobs -->
+<div class="bg-mesh">
+  <div class="mesh-blob"></div>
+  <div class="mesh-blob"></div>
+  <div class="mesh-blob"></div>
+</div>
+
+<!-- Cat face eye tracker -->
+<div class="cat-face" id="catFace">
+  <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ears -->
+    <polygon points="8,28 0,4 22,18" fill="#c4a0f0"/>
+    <polygon points="10,26 4,8 20,18" fill="#f0c8e0"/>
+    <polygon points="60,28 68,4 46,18" fill="#c4a0f0"/>
+    <polygon points="58,26 64,8 48,18" fill="#f0c8e0"/>
+    <!-- Face -->
+    <ellipse cx="34" cy="40" rx="30" ry="26" fill="#e8d5fa"/>
+    <!-- Eye sockets -->
+    <ellipse cx="23" cy="38" rx="10" ry="10" fill="white"/>
+    <ellipse cx="45" cy="38" rx="10" ry="10" fill="white"/>
+    <!-- Pupils -->
+    <ellipse class="cat-pupil" id="pupilL" cx="23" cy="38" rx="5" ry="6.5" fill="#3a1a6e"/>
+    <ellipse class="cat-pupil" id="pupilR" cx="45" cy="38" rx="5" ry="6.5" fill="#3a1a6e"/>
+    <!-- Eye shine -->
+    <circle cx="25" cy="35" r="2" fill="white" opacity="0.9"/>
+    <circle cx="47" cy="35" r="2" fill="white" opacity="0.9"/>
+    <!-- Nose -->
+    <polygon points="34,47 31,43 37,43" fill="#f0a8d0"/>
+    <!-- Mouth -->
+    <path d="M28 50 Q34 55 40 50" stroke="#c4a0f0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Whiskers left -->
+    <line x1="4" y1="44" x2="22" y2="46" stroke="#b48ef0" stroke-width="1" opacity="0.6"/>
+    <line x1="4" y1="49" x2="22" y2="48" stroke="#b48ef0" stroke-width="1" opacity="0.6"/>
+    <!-- Whiskers right -->
+    <line x1="64" y1="44" x2="46" y2="46" stroke="#b48ef0" stroke-width="1" opacity="0.6"/>
+    <line x1="64" y1="49" x2="46" y2="48" stroke="#b48ef0" stroke-width="1" opacity="0.6"/>
+    <!-- Blush -->
+    <ellipse cx="15" cy="50" rx="6" ry="4" fill="#f0a8d0" opacity="0.4"/>
+    <ellipse cx="53" cy="50" rx="6" ry="4" fill="#f0a8d0" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">A·R·P</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle">
+    <span id="themeIcon">☀️</span>
+    <span id="themeLabel">Light</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">✦ Welcome to my universe</p>
+  <h1 class="hero-name"><span class="gradient-name">ANCHANA R P</span></h1>
+  <p class="hero-tagline"><strong>MCA Student</strong> | Aspiring Web Developer</p>
+  <p class="hero-subtext">I design and build modern web experiences 🌐</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-ghost">Get In Touch</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// who am i</p>
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="glass-card about-text">
+      <p>I am currently pursuing <strong>Master of Computer Applications (MCA)</strong>, having completed my <strong>BSc Computer Science</strong>. I am passionate about web development and building interactive, user-centric applications.</p>
+      <p>I love turning ideas into polished digital experiences — from clean UI designs to functional, responsive web apps. Always learning, always building.</p>
+      <div class="about-dob">🎂 &nbsp;August 07, 2004</div>
+    </div>
+    <div class="glass-card">
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">MCA</div>
+          <div class="stat-label">Pursuing</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Curiosity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// what i know</p>
+  <h2 class="section-title">My <span>Skills</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card" data-delay="0">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-header">
+        <span class="skill-name">HTML</span>
+        <span class="skill-pct">90%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+    </div>
+    <div class="skill-card" data-delay="80">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-header">
+        <span class="skill-name">CSS</span>
+        <span class="skill-pct">85%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-card" data-delay="160">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-header">
+        <span class="skill-name">JavaScript</span>
+        <span class="skill-pct">70%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+    </div>
+    <div class="skill-card" data-delay="240">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-header">
+        <span class="skill-name">Python</span>
+        <span class="skill-pct">75%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+    </div>
+    <div class="skill-card" data-delay="320">
+      <div class="skill-icon">🧪</div>
+      <div class="skill-header">
+        <span class="skill-name">Flask</span>
+        <span class="skill-pct">65%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+    </div>
+    <div class="skill-card" data-delay="400">
+      <div class="skill-icon">🟢</div>
+      <div class="skill-header">
+        <span class="skill-name">Node.js</span>
+        <span class="skill-pct">60%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// what i've built</p>
+  <h2 class="section-title">My <span>Projects</span></h2>
+  <div class="projects-masonry">
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span>🤖</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-type">Group Project · Chatbot</p>
+        <h3 class="project-title">Interactive Chatbot</h3>
+        <p class="project-desc">A rule-based intelligent chatbot capable of handling user queries with dynamic responses. Built collaboratively using a modern Node.js and Express.js stack.</p>
+        <div class="project-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span>✅</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-type">Solo Project · Productivity</p>
+        <h3 class="project-title">Task Manager Web App</h3>
+        <p class="project-desc">A full-stack Flask web application to manage daily tasks with persistent SQLite storage, CRUD operations, and a clean minimal interface.</p>
+        <div class="project-tags">
+          <span class="tag">Flask</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-inner">
+          <span>🌴</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-type">Solo Project · Tourism</p>
+        <h3 class="project-title">Explore Kerala Tourism</h3>
+        <p class="project-desc">A visually rich, fully responsive tourism website showcasing Kerala's destinations, culture, and experiences — built with pure HTML and CSS craftsmanship.</p>
+        <div class="project-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">Responsive</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// let's connect</p>
+  <h2 class="section-title">Get In <span>Touch</span></h2>
+  <div class="contact-grid">
+    <a href="mailto:anchanarpee@gmail.com" class="contact-card">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-info-label">Email</div>
+        <div class="contact-info-value">anchanarpee@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/anchana-rp-230660367" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">💼</div>
+      <div>
+        <div class="contact-info-label">LinkedIn</div>
+        <div class="contact-info-value">anchana-rp-230660367</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Crafted with 💜 by <span>Anchana R P</span> &nbsp;·&nbsp; MCA Student &nbsp;·&nbsp; Kerala, India</p>
+</footer>
+
+<!-- WALKING CAT -->
+<div class="cat-stage">
+  <div class="walking-cat">
+    <svg width="90" height="70" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Tail -->
+      <path d="M82 38 Q95 20 88 10 Q82 2 78 12" stroke="#c4a0f0" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <!-- Body -->
+      <ellipse cx="45" cy="44" rx="28" ry="18" fill="#e8d5fa"/>
+      <!-- Head -->
+      <ellipse cx="18" cy="30" rx="16" ry="14" fill="#e8d5fa"/>
+      <!-- Ears -->
+      <polygon points="7,20 4,8 16,16" fill="#c4a0f0"/>
+      <polygon points="8,19 6,10 15,15" fill="#f0c8e0"/>
+      <polygon points="25,18 28,6 19,16" fill="#c4a0f0"/>
+      <polygon points="24,18 26,9 20,15" fill="#f0c8e0"/>
+      <!-- Eyes -->
+      <ellipse cx="13" cy="29" rx="4" ry="3.5" fill="white"/>
+      <ellipse cx="23" cy="29" rx="4" ry="3.5" fill="white"/>
+      <ellipse cx="13" cy="29" rx="2" ry="2.8" fill="#3a1a6e"/>
+      <ellipse cx="23" cy="29" rx="2" ry="2.8" fill="#3a1a6e"/>
+      <circle cx="14" cy="27.5" r="1" fill="white"/>
+      <circle cx="24" cy="27.5" r="1" fill="white"/>
+      <!-- Nose -->
+      <polygon points="18,34 16,31 20,31" fill="#f0a8d0"/>
+      <!-- Whiskers -->
+      <line x1="2" y1="32" x2="13" y2="33" stroke="#b48ef0" stroke-width="1" opacity="0.7"/>
+      <line x1="2" y1="36" x2="13" y2="35" stroke="#b48ef0" stroke-width="1" opacity="0.7"/>
+      <line x1="34" y1="32" x2="23" y2="33" stroke="#b48ef0" stroke-width="1" opacity="0.7"/>
+      <!-- Blush -->
+      <ellipse cx="8" cy="35" rx="4" ry="2.5" fill="#f0a8d0" opacity="0.5"/>
+      <ellipse cx="28" cy="35" rx="4" ry="2.5" fill="#f0a8d0" opacity="0.5"/>
+      <!-- Legs (animated) -->
+      <g class="cat-legs">
+        <rect x="26" y="58" width="7" height="12" rx="3.5" fill="#c4a0f0" class="leg-fl"/>
+        <rect x="37" y="58" width="7" height="12" rx="3.5" fill="#c4a0f0" class="leg-rl"/>
+        <rect x="52" y="58" width="7" height="12" rx="3.5" fill="#d4b0f8" class="leg-fr"/>
+        <rect x="63" y="58" width="7" height="12" rx="3.5" fill="#d4b0f8" class="leg-rr"/>
+      </g>
+    </svg>
+    <style>
+      .leg-fl { animation: legF 0.5s ease-in-out infinite alternate; transform-origin: 29px 58px; }
+      .leg-rl { animation: legR 0.5s ease-in-out infinite alternate-reverse; transform-origin: 40px 58px; }
+      .leg-fr { animation: legR 0.5s ease-in-out infinite alternate; transform-origin: 55px 58px; }
+      .leg-rr { animation: legF 0.5s ease-in-out infinite alternate-reverse; transform-origin: 66px 58px; }
+      @keyframes legF {
+        from { transform: rotate(-18deg); }
+        to   { transform: rotate(18deg); }
+      }
+      @keyframes legR {
+        from { transform: rotate(14deg); }
+        to   { transform: rotate(-14deg); }
+      }
+    </style>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// CUSTOM CURSOR
+// ══════════════════════════════════
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top  = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .project-card, .skill-card, .contact-card, .glass-card').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+});
+
+// ══════════════════════════════════
+// THEME TOGGLE
+// ══════════════════════════════════
+const toggle = document.getElementById('themeToggle');
+const icon   = document.getElementById('themeIcon');
+const label  = document.getElementById('themeLabel');
+let isDark = true;
+
+toggle.addEventListener('click', () => {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  icon.textContent  = isDark ? '☀️' : '🌙';
+  label.textContent = isDark ? 'Light' : 'Dark';
+});
+
+// ══════════════════════════════════
+// CAT FACE EYE TRACKER
+// ══════════════════════════════════
+const catFaceEl = document.getElementById('catFace');
+const pupilL = document.getElementById('pupilL');
+const pupilR = document.getElementById('pupilR');
+
+document.addEventListener('mousemove', e => {
+  const rect = catFaceEl.getBoundingClientRect();
+  const catCX = rect.left + rect.width / 2;
+  const catCY = rect.top + rect.height / 2;
+
+  // Eye centers in SVG coords (scaled)
+  const scale = rect.width / 68;
+  const eyeLX = rect.left + 23 * scale;
+  const eyeLY = rect.top  + 38 * scale;
+  const eyeRX = rect.left + 45 * scale;
+  const eyeRY = rect.top  + 38 * scale;
+
+  function movePupil(pupil, eyeX, eyeY, baseCX, baseCY) {
+    const dx = e.clientX - eyeX;
+    const dy = e.clientY - eyeY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const maxMove = 3.2;
+    const nx = dist > 0 ? (dx / dist) * Math.min(maxMove, dist * 0.12) : 0;
+    const ny = dist > 0 ? (dy / dist) * Math.min(maxMove, dist * 0.12) : 0;
+    pupil.setAttribute('cx', baseCX + nx);
+    pupil.setAttribute('cy', baseCY + ny);
+  }
+
+  movePupil(pupilL, eyeLX, eyeLY, 23, 38);
+  movePupil(pupilR, eyeRX, eyeRY, 45, 38);
+});
+
+// ══════════════════════════════════
+// SCROLL ANIMATIONS — INTERSECTION OBSERVER
+// ══════════════════════════════════
+const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+// Section labels & titles
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('animate-in'); } });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(s => sectionObs.observe(s));
+
+// Cards with staggered delay
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = parseInt(e.target.dataset.delay || 0);
+      setTimeout(() => e.target.classList.add('visible'), delay);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.glass-card, .skill-card, .project-card, .contact-card').forEach((card, i) => {
+  if (!card.dataset.delay) card.dataset.delay = i * 80;
+  cardObs.observe(card);
+});
+
+// Skill bars
+const skillBarObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.skill-fill');
+      if (fill) {
+        setTimeout(() => {
+          fill.style.width = fill.dataset.width + '%';
+        }, parseInt(e.target.dataset.delay || 0) + 200);
+      }
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.skill-card').forEach(c => skillBarObs.observe(c));
+
+// ══════════════════════════════════
+// NAVBAR SCROLL EFFECT
+// ══════════════════════════════════
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) {
+    nav.style.height = '56px';
+  } else {
+    nav.style.height = '64px';
+  }
+}, { passive: true });
+</script>
+</body>
+</html>

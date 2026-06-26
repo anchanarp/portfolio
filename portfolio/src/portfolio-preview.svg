@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Portfolio website hero preview">
+  <defs>
+    <linearGradient id="bgp" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#030611"/>
+      <stop offset=".56" stop-color="#060b1a"/>
+      <stop offset="1" stop-color="#0c1025"/>
+    </linearGradient>
+    <linearGradient id="rp" x1="0" x2="1">
+      <stop offset="0" stop-color="#a855f7"/>
+      <stop offset=".48" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="glowp" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bgp)"/>
+  <circle cx="880" cy="210" r="260" fill="#7c3aed" opacity=".2"/>
+  <circle cx="1040" cy="570" r="210" fill="#2563eb" opacity=".14"/>
+  <circle cx="188" cy="120" r="190" fill="#a855f7" opacity=".12"/>
+  <g opacity=".72">
+    <circle cx="948" cy="110" r="12" fill="#a855f7" filter="url(#glowp)"/>
+    <circle cx="624" cy="216" r="9" fill="#2563eb" filter="url(#glowp)"/>
+    <circle cx="1016" cy="426" r="7" fill="#7c3aed" filter="url(#glowp)"/>
+  </g>
+  <rect x="64" y="54" width="1072" height="612" rx="34" fill="rgba(8,13,28,.72)" stroke="#513186"/>
+  <text x="106" y="112" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800">Anchana <tspan fill="#a855f7">R P</tspan></text>
+  <g fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">
+    <text x="520" y="112">About</text>
+    <text x="604" y="112">Skills</text>
+    <text x="684" y="112">Projects</text>
+    <text x="790" y="112">Education</text>
+    <text x="910" y="112">Contact</text>
+  </g>
+  <text x="112" y="220" fill="#c084fc" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Hi, I&apos;m</text>
+  <text x="112" y="318" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="82" font-weight="800">Anchana <tspan fill="url(#rp)">R P</tspan></text>
+  <text x="112" y="382" fill="#c4b5fd" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="500">MCA Student | Aspiring Software Developer</text>
+  <text x="112" y="438" fill="#d7dded" font-family="Inter, Arial, sans-serif" font-size="17">
+    <tspan x="112" dy="0">I am an MCA student passionate about building responsive, accessible,</tspan>
+    <tspan x="112" dy="30">and user-friendly web applications with clean code.</tspan>
+  </text>
+  <rect x="112" y="504" width="154" height="56" rx="28" fill="url(#rp)" filter="url(#glowp)"/>
+  <text x="189" y="540" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" text-anchor="middle">View Projects</text>
+  <rect x="292" y="504" width="192" height="56" rx="28" fill="#070c1b" stroke="#8b5cf6"/>
+  <text x="388" y="540" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" text-anchor="middle">Download Resume</text>
+  <g transform="translate(650 136)">
+    <ellipse cx="270" cy="368" rx="228" ry="56" fill="#7c3aed" opacity=".38" filter="url(#glowp)"/>
+    <ellipse cx="288" cy="236" rx="276" ry="104" fill="none" stroke="#a855f7" stroke-width="2" opacity=".85" transform="rotate(-18 288 236)"/>
+    <ellipse cx="284" cy="235" rx="330" ry="130" fill="none" stroke="#2563eb" stroke-width="2" opacity=".55" transform="rotate(-8 284 235)"/>
+    <path d="M178 64 500 184c18 7 28 23 24 41l-26 134c-4 20-23 29-44 20L136 238c-18-8-27-23-23-41l25-107c4-21 22-33 40-26Z" fill="#070b18" stroke="url(#rp)" stroke-width="3"/>
+    <path d="M158 250 452 382 338 444 24 300l134-50Z" fill="#0b1228" stroke="#2563eb" stroke-width="2"/>
+    <path d="M214 132h92M214 166h72M214 199h118M398 202l-34 29 34 39M446 224l34 28-34 40" stroke="#a855f7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glowp)"/>
+  </g>
+</svg>
